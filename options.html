@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Options - LinkedIn Content Refinement and Cold Messaging Helper</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<body>
+    <h1>Options</h1>
+    <p>Customize your LinkedIn Content Refinement and Cold Messaging Helper settings here.</p>
+    <form id="optionsForm">
+        <label for="aiSensitivity">AI Sensitivity:</label>
+        <input type="range" id="aiSensitivity" name="aiSensitivity" min="1" max="10">
+        <br>
+        <label for="autoAnalyze">Automatically analyze profiles:</label>
+        <input type="checkbox" id="autoAnalyze" name="autoAnalyze">
+        <br>
+        <label for="autoRefine">Automatically refine content:</label>
+        <input type="checkbox" id="autoRefine" name="autoRefine">
+        <br>
+        <input type="submit" value="Save">
+    </form>
+    <script src="options.js"></script>
+</body>
+</html>
