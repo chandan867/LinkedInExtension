@@ -1,28 +1,38 @@
-// popup.js
+// // popup.js
 
-document.addEventListener('DOMContentLoaded', function() {
+
+document.addEventListener('DOMContentLoaded',function() {
     var refineContentButton = document.getElementById('refineContent');
     var resultDiv = document.getElementById('result');
 
     // Add event listener for refine content button
-    refineContentButton.addEventListener('click', function() {
-        chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
-            var activeTab = tabs[0];
-            chrome.tabs.sendMessage(activeTab.id, {"message": "refine_content"});
-        });
+    refineContentButton.addEventListener('click',async function() {
+       let contentToRefine="I am learning blockchain and want to connect with other people too";
+       let refinedContent=await refineContent(contentToRefine);
+       resultDiv.innerText = refinedContent;
+
     });
 
-    // Listen for messages from the background script
-    chrome.runtime.onMessage.addListener(
-        function(request, sender, sendResponse) {
-            if (request.message === "analyze_profile") {
-                // Display the analysis result
-                resultDiv.innerHTML = '<h2>Profile Analysis Result</h2>' + request.result;
-            }
-            else if (request.message === "refine_content") {
-                // Display the refined content
-                resultDiv.innerHTML = '<h2>Refined Content</h2>' + request.result;
-            }
-        }
-    );
+
 });
+
+async function refineContent(contentData) {
+    let contentText = JSON.stringify(contentData);
+
+    let response = await fetch('http://localhost:3991/analyze', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ content: contentText })
+    });
+
+    if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    let refinedContent = await response.json();
+    console.log(refineContent);
+    return refinedContent.result;
+    
+}

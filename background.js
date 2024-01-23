@@ -14,7 +14,9 @@ async function refineContent(contentData) {
     }
 
     let refinedContent = await response.json();
+    console.log(refineContent);
     return refinedContent;
+    
 }
 
 // Listen for messages from the popup script
@@ -32,7 +34,7 @@ chrome.runtime.onMessage.addListener(
                 });
 
             // Indicate that the response will be sent asynchronously
-            return true;
+            // return true;
         }
     }
 );

@@ -1,21 +1,11 @@
 {
   "manifest_version": 3,
-  "name": "LinkedIn Content Refinement and Cold Messaging Helper",
+  "name": "LinkedIn Refine Content",
   "version": "1.0",
-  "description": "A chrome extension that helps users refine their LinkedIn posts and aids in cold messaging by analyzing the profile of the person they are messaging. Uses chat GPT API for AI purposes.",
-  "content_scripts": [
-    {
-      "matches": ["https://*.linkedin.com/*"],
-      "js": ["content.js"]
-    }
+  "permissions": [
+    "activeTab"
   ],
   "action": {
     "default_popup": "popup.html"
-  },
-  "options_page": "options.html",
-  "permissions": [
-    "activeTab",
-    "storage"
-  ]
-
+  }
 }
